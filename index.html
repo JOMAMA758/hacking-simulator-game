@@ -1,0 +1,71 @@
+<!-- HTML -->
+<div id="game">
+  <div id="code-input">
+    <textarea id="code"></textarea>
+  </div>
+  <div id="score">Score: <span id="score-value">0</span></div>
+</div>
+
+<!-- CSS -->
+#game {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#code-input {
+  margin: 10px 0;
+}
+
+#code {
+  width: 80%;
+  height: 200px;
+  font-family: monospace;
+}
+
+#score {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+#score-value {
+  font-weight: bold;
+}
+<script>// JavaScript
+const codeInput = document.getElementById("code");
+const scoreValue = document.getElementById("score-value");
+
+// Start the game with a score of 0
+let score = 0;
+
+// Update the score display
+function updateScore() {
+  scoreValue.textContent = score;
+}
+
+// Increment the score when the user types a line of code
+codeInput.addEventListener("input", function() {
+  // Split the code into lines
+  const lines = codeInput.value.split("\n");
+
+  // Increment the score by the number of lines of code
+  score += lines.length;
+
+  // Update the score display
+  updateScore();
+});
+
+// Reset the game when the user submits the code
+codeInput.addEventListener("keydown", function(event) {
+  if (event.key === "Enter" && event.ctrlKey) {
+    // Reset the score
+    score = 0;
+
+    // Clear the code input
+    codeInput.value = "";
+
+    // Update the score display
+    updateScore();
+  }
+});
+</script>
